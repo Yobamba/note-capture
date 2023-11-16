@@ -1,0 +1,14 @@
+//Local system
+### GET notes on local
+GET http://localhost:8080/notes
+### GET note by id
+GET http://localhost:8080/notes/655557cf3b2bb0b68eb4ef40
+### Create single note
+POST http://localhost:8080/notes HTTP/1.1 
+content-type: application/json
+
+{
+"title": "something","note": "note","noteTags": "tag","user": "Kemi","pinStatus": "false","attatchments":"plaeholder"
+}
+### GET note by tag
+GET http://localhost:8080/notes/note/tag
