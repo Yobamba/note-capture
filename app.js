@@ -51,7 +51,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/google/note-capture",
+      callbackURL: "https://note-capture.onrender.com/auth/google/note-capture",
       userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
@@ -74,10 +74,10 @@ app.get("/auth/google", (req, res) => {
 app.get(
   "/auth/google/note-capture",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:3000/start_page/sign-in",
+    failureRedirect: "https://note-capture.onrender.com/start_page/sign-in",
   }),
   function (req, res) {
-    res.redirect("http://localhost:3000/api-docs");
+    res.redirect("https://note-capture.onrender.com/api-docs");
     console.log("in the auth doc");
   }
 );
