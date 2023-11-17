@@ -56,8 +56,4 @@ router.delete("/:id", ensureAuthenticated, notesController.deleteNote, () => {
    */
 });
 
-
-
-
-
-module.exports = {router, ensureAuthenticated};
+module.exports = router;

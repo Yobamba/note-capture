@@ -1,6 +1,18 @@
 const router = require("express").Router();
 const tagsController = require("../controllers/tags");
-const ensureAuthenticated = require("./notes");
+
+// Define the ensureAuthenticated middleware
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    console.log("you're authenticated now!");
+    return next(); // User is authenticated, proceed to the next middleware
+  }
+
+  res.status(401).json({
+    message:
+      "Authentication required. In the browser url remove doc and replace it with start_page/sign-in",
+  });
+};
 
 router.get(
   "/note/:noteTag",
