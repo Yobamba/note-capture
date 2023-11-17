@@ -14,7 +14,6 @@ router.get(
      */
   }
 );
-
 router.put(
   "/note/:noteId/addTag",
   ensureAuthenticated,
@@ -27,7 +26,7 @@ router.put(
      */
   }
 );
-
+//
 router.get("/", tagsController.getTags);
 
 router.get("/:tagName/notes", tagsController.getTag);
