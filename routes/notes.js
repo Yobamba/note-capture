@@ -13,7 +13,6 @@ router.put('/:id', notesController.updateNote);
 
 router.delete('/:id', notesController.deleteNote);
 
-//router.get('/:noteTag', notesController.findByTag);
 router.get('/note/:noteTag', notesController.findByTag);
 
 router.put('/:noteId/addTag', notesController.addTagToNote);
