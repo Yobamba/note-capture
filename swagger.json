@@ -7,22 +7,20 @@
   },
   "host": "localhost:3000/doc",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/notes/": {
       "get": {
-        "description": "",
-        "produces": ["application/json"],
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Get all of the notes in the database",
+        "description": "Endpoint to get all of the notes in the database",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -30,7 +28,11 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Create a note in the database",
+        "description": "Endpoint to create a note in the database",
         "parameters": [
           {
             "name": "body",
@@ -72,8 +74,14 @@
     },
     "/notes/{id}": {
       "get": {
-        "description": "",
-        "produces": ["application/json"],
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Get a specific note by id",
+        "description": "Endpoint to get a specific note by id",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -89,7 +97,11 @@
         }
       },
       "put": {
-        "description": "",
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Modify the specified note",
+        "description": "Endpoint to modify the specified note",
         "parameters": [
           {
             "name": "id",
@@ -135,7 +147,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Notes"
+        ],
+        "summary": "Delete the specified note",
+        "description": "Endpoint to delete the specified note",
         "parameters": [
           {
             "name": "id",
@@ -156,8 +172,14 @@
     },
     "/notes/note/{noteTag}": {
       "get": {
-        "description": "",
-        "produces": ["application/json"],
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Find notes by tag",
+        "description": "Endpoint to find notes by tag",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "noteTag",
@@ -175,7 +197,11 @@
     },
     "/notes/note/{noteId}/addTag": {
       "put": {
-        "description": "",
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Add a tag to the specified note",
+        "description": "Endpoint to add a tag to the specified note",
         "parameters": [
           {
             "name": "noteId",
