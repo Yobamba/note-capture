@@ -3,6 +3,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+mongoose.set("useCreateIndex");
 
 const userSchema = new mongoose.Schema({
   googleId: String,
