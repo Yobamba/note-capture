@@ -5,11 +5,9 @@
     "description": "Manages users notes",
     "version": "1.0.0"
   },
-  "host": "note-capture.onrender.com",
+  "host": "localhost:3000/doc",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
@@ -24,9 +22,7 @@
     "/notes/": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -77,9 +73,7 @@
     "/notes/{id}": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -163,9 +157,7 @@
     "/notes/note/{noteTag}": {
       "get": {
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
           {
             "name": "noteTag",
