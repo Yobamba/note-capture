@@ -125,7 +125,7 @@ const createUser = async (req, res) => {
   const db = await mongodb.getDb();
   const response = await db.db().collection("users").insertOne(user);
   if (response.acknowledged) {
-    res.redirect("http://localhost:3000/start_page/login");
+    res.redirect("https://note-capture.onrender.com/start_page/login");
   } else {
     res
       .status(500)
