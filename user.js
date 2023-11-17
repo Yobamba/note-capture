@@ -5,9 +5,8 @@ const findOrCreate = require("mongoose-findorcreate");
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
 const userSchema = new mongoose.Schema({
-  email: String,
-  password: String,
   googleId: String,
+  username: String,
 });
 
 userSchema.plugin(passportLocalMongoose);

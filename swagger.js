@@ -5,10 +5,10 @@ const doc = {
     title: "Notes API",
     description: "Manages users notes",
   },
-  // host: "note-capture.onrender.com",
-  host: "localhost:3000/doc",
-  // schemes: ["https"],
-  schemes: ["http"],
+  host: "note-capture.onrender.com",
+  // host: "localhost:3000",
+  schemes: ["https"],
+  // schemes: ["http"],
 };
 
 // const outputFile = './path/swagger-output.json';
