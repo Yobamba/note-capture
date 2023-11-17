@@ -40,14 +40,34 @@ router.put(
   }
 );
 //
-router.get("/", tagsController.getTags);
+router.get("/", tagsController.getTags, () => {
+  /**
+   * #swagger.tags = ["Tags"]
+   */
+});
 
-router.get("/:tagName/notes", tagsController.getTag);
+router.get("/:tagName/notes", tagsController.getTag, () => {
+  /**
+   * #swagger.tags = ["Tags"]
+   */
+});
 
-router.post("/", tagsController.createTag);
+router.post("/", tagsController.createTag, () => {
+  /**
+   * #swagger.tags = ["Tags"]
+   */
+});
 
-router.put("/:tagId", tagsController.updateTag);
+router.put("/:tagId", tagsController.updateTag, () => {
+  /**
+   * #swagger.tags = ["Tags"]
+   */
+});
 
-router.delete("/:tagId", tagsController.deleteTag);
+router.delete("/:tagId", tagsController.deleteTag, () => {
+  /**
+   * #swagger.tags = ["Tags"]
+   */
+});
 
 module.exports = router;
