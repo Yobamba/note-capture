@@ -56,30 +56,8 @@ router.delete("/:id", ensureAuthenticated, notesController.deleteNote, () => {
    */
 });
 
-router.get(
-  "/note/:noteTag",
-  ensureAuthenticated,
-  notesController.findByTag,
-  () => {
-    /**
-     * #swagger.tags = ["Tags"]
-     * #swagger.summary = "Find notes by tag"
-     * #swagger.description = "Endpoint to find notes by tag"
-     */
-  }
-);
 
-router.put(
-  "/note/:noteId/addTag",
-  ensureAuthenticated,
-  notesController.addTagToNote,
-  () => {
-    /**
-     * #swagger.tags = ["Tags"]
-     * #swagger.summary = "Add a tag to the specified note"
-     * #swagger.description = "Endpoint to add a tag to the specified note"
-     */
-  }
-);
 
-module.exports = router;
+
+
+module.exports = {router, ensureAuthenticated};

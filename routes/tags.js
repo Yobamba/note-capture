@@ -1,16 +1,41 @@
-const router = require('express').Router();
-const tagsController = require('../controllers/tags');
+const router = require("express").Router();
+const tagsController = require("../controllers/tags");
+const ensureAuthenticated = require("./notes");
 
-router.get('/', tagsController.getTags);
+router.get(
+  "/note/:noteTag",
+  ensureAuthenticated,
+  notesController.findByTag,
+  () => {
+    /**
+     * #swagger.tags = ["Tags"]
+     * #swagger.summary = "Find notes by tag"
+     * #swagger.description = "Endpoint to find notes by tag"
+     */
+  }
+);
 
-router.get('/:tagName/notes', tagsController.getTag);
+router.put(
+  "/note/:noteId/addTag",
+  ensureAuthenticated,
+  notesController.addTagToNote,
+  () => {
+    /**
+     * #swagger.tags = ["Tags"]
+     * #swagger.summary = "Add a tag to the specified note"
+     * #swagger.description = "Endpoint to add a tag to the specified note"
+     */
+  }
+);
 
-router.post('/', tagsController.createTag);
+router.get("/", tagsController.getTags);
 
-router.put('/:tagId', tagsController.updateTag);
+router.get("/:tagName/notes", tagsController.getTag);
 
-router.delete('/:tagId', tagsController.deleteTag);
+router.post("/", tagsController.createTag);
 
+router.put("/:tagId", tagsController.updateTag);
 
+router.delete("/:tagId", tagsController.deleteTag);
 
 module.exports = router;
