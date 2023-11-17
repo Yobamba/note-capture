@@ -14,6 +14,9 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/sign-in", (req, res) => {
+    /**
+   * #swagger.tags = ["Sign In"]
+   */
   console.log("in the get sign in code");
   res.sendFile("sign-in.html", { root: path.join(__dirname, "../public") });
 });
@@ -23,6 +26,9 @@ router.post(
   validation.saveCreatedUser,
   notesController.createUser,
   (req, res) => {
+    /**
+   * #swagger.tags = ["Sign In"]
+   */
     // res.sendFile("login.html", { root: path.join(__dirname, "../public") });
     res.sendFile("login", { root: path.join(__dirname, "../start_page") });
   }
