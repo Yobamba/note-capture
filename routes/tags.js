@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const tagsController = require("../controllers/tags");
+const notesController = require("../controllers/notes");
 
 // Define the ensureAuthenticated middleware
 const ensureAuthenticated = (req, res, next) => {
