@@ -47,7 +47,7 @@
                   "example": "any"
                 },
                 "noteTags": {
-                  "example": "any"
+                  "example": ["array"]
                 },
                 "user": {
                   "example": "any"

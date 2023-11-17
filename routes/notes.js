@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const notesController = require("../controllers/notes");
 
 router.get("/", notesController.getNotes, () => {
@@ -58,5 +57,8 @@ router.put("/note/:noteId/addTag", notesController.addTagToNote, () => {
    * #swagger.description = "Endpoint to add a tag to the specified note"
    */
 });
+router.put('/:noteId/tags/:tagId', notesController.updateNoteTag);
+
+router.delete('/:noteId/tags/:tagId', notesController.deleteNoteTag);
 
 module.exports = router;

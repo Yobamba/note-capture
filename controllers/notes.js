@@ -103,6 +103,39 @@ const createNote = async (req, res) => {
       res.status(500).json(response.error || "Sorry, an error occurred while adding the tag.");
     }
   };
+  const updateNoteTag = async (req, res) => {
+    const noteId = new ObjectId(req.params.noteId);
+    const tagId = new ObjectId(req.params.tagId);
+    const db = await mongodb.getDb();
+    
+    const response = await db.db("note_capture").collection("notes").updateOne(
+      { _id: noteId },
+      { $addToSet: { noteTags: tagId } }
+    );
+  
+    if (response.modifiedCount > 0) {
+      res.status(200).json({ message: `Tag ${tagId} added to note ${noteId}` });
+    } else {
+      res.status(500).json(response.error || 'Sorry, an error occurred while adding the tag to the note.');
+    }
+  };
+  
+  const deleteNoteTag = async (req, res) => {
+    const noteId = new ObjectId(req.params.noteId);
+    const tagId = new ObjectId(req.params.tagId);
+    const db = await mongodb.getDb();
+    
+    const response = await db.db("note_capture").collection("notes").updateOne(
+      { _id: noteId },
+      { $pull: { noteTags: tagId } }
+    );
+  
+    if (response.modifiedCount > 0) {
+      res.status(200).json({ message: `Tag ${tagId} removed from note ${noteId}` });
+    } else {
+      res.status(500).json(response.error || 'Sorry, an error occurred while removing the tag from the note.');
+    }
+  };
   
 
-  module.exports = { getNotes, getNote,createNote,updateNote,deleteNote,findByTag,addTagToNote};
+  module.exports = { getNotes, getNote,createNote,updateNote,deleteNote,findByTag,addTagToNote,updateNoteTag,deleteNoteTag};
