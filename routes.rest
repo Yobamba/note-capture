@@ -8,7 +8,42 @@ POST http://localhost:8080/notes HTTP/1.1
 content-type: application/json
 
 {
-"title": "something","note": "note","noteTags": "tag","user": "Kemi","pinStatus": "false","attatchments":"plaeholder"
+"title": "something","note": "note","noteTags": ["others"],"user": "Kemi","pinStatus": "false","attatchments":"plaeholder"
 }
 ### GET note by tag
 GET http://localhost:8080/notes/note/tag
+
+###
+PUT http://localhost:8080/notes/6557a303fefda43a17b98ebc/addTag
+Content-Type: application/json
+
+{
+  "newTag": "Reading"
+}
+
+###
+POST http://localhost:8080/tags HTTP/1.1 
+content-type: application/json
+
+{
+"name": "Religious"
+}
+### GET all tags on local
+GET http://localhost:8080/tags
+### GET tag by id
+GET http://localhost:8080/tags/6557a5904652108c01d56e77
+### add to trash
+POST http://localhost:8080/trash/655557cf3b2bb0b68eb4ef40/trash
+Content-Type: application/json
+
+{
+  "noteId": "655557cf3b2bb0b68eb4ef40"
+}
+
+### restore from trash
+PUT http://localhost:8080/trash/655557cf3b2bb0b68eb4ef40/restore
+Content-Type: application/json
+
+{
+  "noteId": "655557cf3b2bb0b68eb4ef40"
+}
