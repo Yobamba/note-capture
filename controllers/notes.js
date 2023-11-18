@@ -25,7 +25,8 @@ const createNote = async (req, res) => {
     title: req.body.title,
     note: req.body.note,
     noteTags: req.body.noteTags,
-    user: req.user.username, // hoping this gets the username of the google authenticated user
+    user: req.user.username, // gets the authenticated username
+    googleId: req.user.googleId, // gets the authenticated googleId
     pinStatus: req.body.pinStatus,
     attatchments: req.body.attatchments,
   };
