@@ -67,12 +67,14 @@ router.post("/", tagsController.createTag, () => {
 router.put("/:tagId", tagsController.updateTag, () => {
   /**
    * #swagger.tags = ["Tags"]
+   * #swagger.summary = "Modify the specified tag"
    */
 });
 
 router.delete("/:tagId", tagsController.deleteTag, () => {
   /**
    * #swagger.tags = ["Tags"]
+   * #swagger.summary = "Delete the specified tag"
    */
 });
 

@@ -21,6 +21,8 @@ router.get(
   () => {
     /**
      * #swagger.tags = ["Trash"]
+     * #swagger.summary = "Get the specified note by noteId"
+     * #swagger.description = "Searches the trash for the specified note"
      */
   }
 );
@@ -28,6 +30,7 @@ router.get(
 router.get("/", ensureAuthenticated, trashController.getAllTrash, () => {
   /**
    * #swagger.tags = ["Trash"]
+   * #swagger.summary = "Get all the notes from the trash"
    */
 });
 
@@ -38,6 +41,8 @@ router.post(
   () => {
     /**
      * #swagger.tags = ["Trash"]
+     * #swagger.summary = "Send the specified note to the trash"
+     * #swagger.description = "Specify the note by noteId and it'll be sent to the trash"
      */
   }
 );
@@ -49,6 +54,8 @@ router.delete(
   () => {
     /**
      * #swagger.tags = ["Trash"]
+     * #swagger.summary = "Empty the trash"
+     * #swagger.description = "Permanently delete all of the notes from the trash"
      */
   }
 );
@@ -60,6 +67,8 @@ router.put(
   () => {
     /**
      * #swagger.tags = ["Trash"]
+     * #swagger.summary = "Restore the specified note from the trash to the notes"
+     * #swagger.description = "Specify the note by noteId and it'll be restored to the notes"
      */
   }
 );
@@ -71,6 +80,8 @@ router.delete(
   () => {
     /**
      * #swagger.tags = ["Trash"]
+     * #swagger.summary = "Permanently delete the specified note"
+     * #swagger.description = "Specify the note by noteId and it'll be permanently deleted"
      */
   }
 );
