@@ -16,7 +16,7 @@ const ensureAuthenticated = (req, res, next) => {
   });
 };
 
-router.get("/:id", ensureAuthenticated, notesController.getNotes, () => {
+router.get("/:googleId", ensureAuthenticated, notesController.getNotes, () => {
   /**
    * #swagger.tags = ["Notes"]
    * #swagger.summary = "Get all of the notes in the database"
