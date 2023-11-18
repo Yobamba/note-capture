@@ -4,7 +4,7 @@ const ObjectId = require("mongodb").ObjectId;
 const getNotes = async (req, res) => {
   const googleId = req.user.googleId;
   const db = await mongodb.getDb();
-  const result = await db.db().collection("notes").find({ googleId });
+  const result = await db.db().collection("notes").find({ googleId }); // only get notes by the authenticated user
   result.toArray().then((lists) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(lists);
