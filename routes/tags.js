@@ -43,14 +43,14 @@ router.put(
 router.get("/", tagsController.getTags, () => {
   /**
    * #swagger.tags = ["Tags"]
-   * #swagger.summary = "ind notes by tag"
-   * #swagger.description = "Returns all of the notes with the specified tag"
    */
 });
 
 router.get("/:tagName/notes", tagsController.getTag, () => {
   /**
    * #swagger.tags = ["Tags"]
+   * #swagger.summary = "ind notes by tag"
+   * #swagger.description = "Returns all of the notes with the specified tag"
    *
    */
 });
