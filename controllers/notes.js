@@ -32,8 +32,6 @@ const createNote = async (req, res) => {
     pinStatus: req.body.pinStatus,
     attatchments: req.body.attatchments,
   };
-
-  tagsController.createTag(noteTags);
   const response = await db.db().collection("notes").insertOne(note);
   if (response.acknowledged) {
     res.status(201).json(response);
