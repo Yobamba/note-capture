@@ -1,5 +1,6 @@
 const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
+const tagsController = require("../controllers/tags");
 
 const getNotes = async (req, res) => {
   const googleId = req.user.googleId;
@@ -31,6 +32,8 @@ const createNote = async (req, res) => {
     pinStatus: req.body.pinStatus,
     attatchments: req.body.attatchments,
   };
+
+  tagsController.createTag(noteTags);
   const response = await db.db().collection("notes").insertOne(note);
   if (response.acknowledged) {
     res.status(201).json(response);
