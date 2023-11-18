@@ -2,8 +2,9 @@ const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 
 const getNotes = async (req, res) => {
+  const googleId = new ObjectId(req.user.googleId);
   const db = await mongodb.getDb();
-  const result = await db.db().collection("notes").find();
+  const result = await db.db().collection("notes").find({ _id: googleId });
   result.toArray().then((lists) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(lists);
