@@ -16,7 +16,7 @@ const findOrCreate = require("mongoose-findorcreate");
 const User = require("./user.js");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const app = express();
-const app2 = require("./test.js");
+const app2 = require("./test.js"); // using this to find a way to ommit the sign-in from swagger ui
 
 app.use(
   session({
