@@ -137,6 +137,7 @@ const findByTag = async (req, res) => {
 const addTagToNote = async (req, res) => {
   const noteId = new ObjectId(req.params.noteId);
   const newTag = req.body.newTag;
+  console.log(newTag); // 
 //
   if (!newTag) {
     res.status(400).json({ error: "New tag is required" });
