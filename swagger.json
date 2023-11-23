@@ -7,14 +7,20 @@
   },
   "host": "note-capture.onrender.com",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "https"
+  ],
   "paths": {
     "/notes/": {
       "get": {
-        "tags": ["Notes"],
+        "tags": [
+          "Notes"
+        ],
         "summary": "Get all of the notes in the database",
         "description": "Endpoint to get all of the notes in the database",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -25,7 +31,9 @@
         }
       },
       "post": {
-        "tags": ["Notes"],
+        "tags": [
+          "Notes"
+        ],
         "summary": "Create a note in the database",
         "description": "Endpoint to create a note in the database",
         "parameters": [
@@ -35,16 +43,13 @@
             "schema": {
               "type": "object",
               "properties": {
+                "noteTags": {
+                  "example": "any"
+                },
                 "title": {
                   "example": "any"
                 },
                 "note": {
-                  "example": "any"
-                },
-                "noteTags": {
-                  "example": "any"
-                },
-                "user": {
                   "example": "any"
                 },
                 "pinStatus": {
@@ -72,10 +77,14 @@
     },
     "/notes/{id}": {
       "get": {
-        "tags": ["Notes"],
+        "tags": [
+          "Notes"
+        ],
         "summary": "Get a specific note by id",
         "description": "Endpoint to get a specific note by id",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -94,7 +103,9 @@
         }
       },
       "put": {
-        "tags": ["Notes"],
+        "tags": [
+          "Notes"
+        ],
         "summary": "Modify the specified note",
         "description": "Endpoint to modify the specified note",
         "parameters": [
@@ -145,7 +156,9 @@
         }
       },
       "delete": {
-        "tags": ["Notes"],
+        "tags": [
+          "Notes"
+        ],
         "summary": "Delete the specified note",
         "description": "Endpoint to delete the specified note",
         "parameters": [
@@ -163,18 +176,25 @@
           "401": {
             "description": "Unauthorized"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/notes/note/{noteTag}": {
+    "/tags/note/{noteTag}": {
       "get": {
-        "tags": ["Tags"],
+        "tags": [
+          "Tags"
+        ],
         "summary": "Find notes by tag",
         "description": "Endpoint to find notes by tag",
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "noteTag",
@@ -193,9 +213,11 @@
         }
       }
     },
-    "/notes/note/{noteId}/addTag": {
+    "/tags/note/{noteId}/addTag": {
       "put": {
-        "tags": ["Tags"],
+        "tags": [
+          "Tags"
+        ],
         "summary": "Add a tag to the specified note",
         "description": "Endpoint to add a tag to the specified note",
         "parameters": [
@@ -236,8 +258,14 @@
     },
     "/tags/": {
       "get": {
-        "description": "",
-        "produces": ["application/json"],
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Find all of the tags created",
+        "description": "Returns all of tags created",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -245,6 +273,10 @@
         }
       },
       "post": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Create a tag",
         "description": "",
         "parameters": [
           {
@@ -272,7 +304,11 @@
     },
     "/tags/{tagName}/notes": {
       "get": {
-        "description": "",
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Find notes by tag",
+        "description": "Returns all of the notes with the specified tag",
         "parameters": [
           {
             "name": "tagName",
@@ -290,6 +326,10 @@
     },
     "/tags/{tagId}": {
       "put": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Modify the specified tag",
         "description": "",
         "parameters": [
           {
@@ -321,6 +361,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Delete the specified tag",
         "description": "",
         "parameters": [
           {
@@ -342,7 +386,11 @@
     },
     "/trash/{noteId}": {
       "get": {
-        "description": "",
+        "tags": [
+          "Trash"
+        ],
+        "summary": "Get the specified note by noteId",
+        "description": "Searches the trash for the specified note",
         "parameters": [
           {
             "name": "noteId",
@@ -355,13 +403,20 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
           }
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "Trash"
+        ],
+        "summary": "Permanently delete the specified note",
+        "description": "Specify the note by noteId and it'll be permanently deleted",
         "parameters": [
           {
             "name": "noteId",
@@ -373,6 +428,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -382,17 +440,28 @@
     },
     "/trash/": {
       "get": {
+        "tags": [
+          "Trash"
+        ],
+        "summary": "Get all the notes from the trash",
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
     },
     "/trash/{noteId}/trash": {
       "post": {
-        "description": "",
+        "tags": [
+          "Trash"
+        ],
+        "summary": "Send the specified note to the trash",
+        "description": "Specify the note by noteId and it'll be sent to the trash",
         "parameters": [
           {
             "name": "noteId",
@@ -404,6 +473,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "404": {
             "description": "Not Found"
@@ -416,10 +488,17 @@
     },
     "/trash/deleteAllTrash": {
       "delete": {
-        "description": "",
+        "tags": [
+          "Trash"
+        ],
+        "summary": "Empty the trash",
+        "description": "Permanently delete all of the notes from the trash",
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -429,7 +508,11 @@
     },
     "/trash/{noteId}/restore": {
       "put": {
-        "description": "",
+        "tags": [
+          "Trash"
+        ],
+        "summary": "Restore the specified note from the trash to the notes",
+        "description": "Specify the note by noteId and it'll be restored to the notes",
         "parameters": [
           {
             "name": "noteId",
@@ -442,54 +525,11 @@
           "200": {
             "description": "OK"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/start_page/sign-in": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/start_page/register": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "userName": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "412": {
-            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"

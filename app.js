@@ -16,6 +16,7 @@ const findOrCreate = require("mongoose-findorcreate");
 const User = require("./user.js");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const app = express();
+const app2 = require("./test.js");
 
 app.use(
   session({

@@ -16,6 +16,8 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.get("/sign-in", (req, res) => {
     /**
    * #swagger.tags = ["Sign In"]
+   * swagger.hidden = true
+   * "[ApiExplorerSettings(IgnoreApi = true)]"
    */
   console.log("in the get sign in code");
   res.sendFile("sign-in.html", { root: path.join(__dirname, "../public") });
