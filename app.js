@@ -84,8 +84,10 @@ app.get(
 );
 
 app
-  .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-  .use(bodyParser.json())
+  .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+    //hide the internal api endpoints
+    customCss: 'div[id^="operations-hidden"]{display:none} #operations-tag-hidden{display:none}'
+    })).use(bodyParser.json())
   .use(cors({ origin: "*" }))
   .use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");

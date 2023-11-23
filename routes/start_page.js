@@ -15,7 +15,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/sign-in", (req, res) => {
     /**
-   * #swagger.tags = ["Sign In"]
+   * #swagger.tags = ["operations-hidden"]
    * swagger.hidden = true
    * "[ApiExplorerSettings(IgnoreApi = true)]"
    */
