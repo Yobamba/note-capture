@@ -27,18 +27,7 @@ router.get(
      */
   }
 );
-router.put(
-  "/note/:noteId/addTag",
-  ensureAuthenticated,
-  notesController.addTagToNote,
-  () => {
-    /**
-     * #swagger.tags = ["Tags"]
-     * #swagger.summary = "Add a tag to the specified note"
-     * #swagger.description = "Endpoint to add a tag to the specified note"
-     */
-  }
-);
+
 //
 router.get("/", tagsController.getTags, () => {
   /**
