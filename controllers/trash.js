@@ -24,43 +24,29 @@ const getAllTrash = async (req, res) => {
   });
 };
 
-const addToTrash = async (req, res) => {
-  const noteId = new ObjectId(req.params.noteId);
+const addToTrash = async (req, res, originalNote) => {
+  const noteId = new ObjectId(req.params.id);
   const db = await mongodb.getDb();
-  const originalNote = await db
-    .db()
-    .collection("notes")
-    .findOne({ _id: noteId });
 
-  if (!originalNote) {
-    res.status(404).json({ error: `Note with ID ${noteId} not found` });
-    return;
-  }
-  const trashNote = { ...originalNote, isTrashed: true };
-  const responseMoveToTrash = await db
-    .db()
-    .collection("trash")
-    .insertOne(trashNote);
-  const responseRemoveFromOriginal = await db
-    .db()
-    .collection("notes")
-    .deleteOne({ _id: noteId });
-  if (
-    responseMoveToTrash.acknowledged &&
-    responseRemoveFromOriginal.deletedCount > 0
-  ) {
-    res.status(200).json({ message: `Note ${noteId} moved to trash` });
-  } else {
-    res
-      .status(500)
-      .json(
-        responseMoveToTrash.error ||
-          responseRemoveFromOriginal.error ||
-          "Sorry, an error occurred while moving the note to trash."
-      );
-  }
-};
+  try {
+    const trashNote = { ...originalNote, isTrashed: true };
 
+    const responseMoveToTrash = await db.db("note_capture").collection("trash").insertOne(trashNote);
+
+    if (!responseMoveToTrash.acknowledged) {
+      throw new Error(responseMoveToTrash.error || 'Failed to move the note to trash.');
+    }
+
+    const responseRemoveFromOriginal = await db.db("note_capture").collection("notes").deleteOne({ _id: noteId });
+
+    if (!responseRemoveFromOriginal.acknowledged || responseRemoveFromOriginal.deletedCount === 0) {
+      throw new Error(responseRemoveFromOriginal.error || 'Failed to remove the note from the original collection.');
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: error.message || 'Sorry, an error occurred while moving the note to trash.' });
+  }
+}
 const deleteAllTrash = async (req, res) => {
   const db = await mongodb.getDb();
   const responseDeleteAllTrash = await db
