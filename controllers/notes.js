@@ -25,42 +25,51 @@ const getNote = async (req, res) => {
 const createNote = async (req, res) => {
   const db = await mongodb.getDb();
 
-  //noteTags should be a list of tags
+  // noteTags should be a list of tags
   const noteTags = Array.isArray(req.body.noteTags)
-  ? req.body.noteTags
-  : [req.body.noteTags];
+    ? req.body.noteTags
+    : [req.body.noteTags];
 
-  // Adding to tags collection if not already existing
-  for (const tag of noteTags) {
-    const existingTag = await db
-      .db()
-      .collection("tags")
-      .findOne({ name: tag });
-
-    if (!existingTag) {
-      const newTag = { name: tag };
-      await db.db().collection("tags").insertOne(newTag);
-    }
-  }
+  // Adding each tag to the tags collection if not already existing
+  await Promise.all(
+    noteTags.map(async (tag) => {
+      await createTagIfNotExists(db, tag);
+    })
+  );
 
   const note = {
     title: req.body.title,
     note: req.body.note,
-    noteTags: req.body.noteTags,
+    noteTags: noteTags, //req.body.noteTags,
     user: req.user.username, // gets the authenticated username
     googleId: req.user.googleId, // gets the authenticated googleId
     pinStatus: req.body.pinStatus,
     attatchments: req.body.attatchments,
   };
+
   const response = await db.db().collection("notes").insertOne(note);
+
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
     res
       .status(500)
-      .json(response.error || "Sorry, an error occured while creating note.");
+      .json(response.error || "Sorry, an error occurred while creating note.");
   }
 };
+
+const createTagIfNotExists = async (db, tagName) => {
+  const existingTag = await db
+    .db()
+    .collection("tags")
+    .findOne({ name: tagName });
+
+  if (!existingTag) {
+    const newTag = { name: tagName };
+    await db.db().collection("tags").insertOne(newTag);
+  }
+};
+
 
 const updateNote = async (req, res) => {
   const db = await mongodb.getDb();
@@ -143,10 +152,23 @@ const addTagToNote = async (req, res) => {
   }
 
   const db = await mongodb.getDb();
+  const existingNote = await db
+    .db()
+    .collection("notes")
+    .findOne({ _id: noteId });
+
+  if (!existingNote) {
+    res.status(404).json({ error: `Note with ID ${noteId} not found` });
+    return;
+  }
+  const updatedNoteTags = Array.isArray(existingNote.noteTags)
+    ? existingNote.noteTags
+    : [existingNote.noteTags];
+  updatedNoteTags.push(newTag);
   const response = await db
     .db()
     .collection("notes")
-    .updateOne({ _id: noteId }, { $push: { noteTags: newTag } });
+    .updateOne({ _id: noteId }, { $set: { noteTags: updatedNoteTags } });
 
   if (response.modifiedCount > 0) {
     res
@@ -158,6 +180,7 @@ const addTagToNote = async (req, res) => {
       .json(response.error || "Sorry, an error occurred while adding the tag.");
   }
 };
+
 
 const createUser = async (req, res) => {
   const user = {
