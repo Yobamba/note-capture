@@ -25,7 +25,6 @@ const getAllTrash = async (req, res) => {
 };
 
 const addToTrash = async (req, res, originalNote) => {
-  const noteId = new ObjectId(req.params.id);
   const db = await mongodb.getDb();
 
   try {
@@ -37,14 +36,15 @@ const addToTrash = async (req, res, originalNote) => {
       throw new Error(responseMoveToTrash.error || 'Failed to move the note to trash.');
     }
 
-    const responseRemoveFromOriginal = await db.db("note_capture").collection("notes").deleteOne({ _id: noteId });
+    const responseRemoveFromOriginal = await db.db("note_capture").collection("notes").deleteOne({ _id: originalNote._id });
 
     if (!responseRemoveFromOriginal.acknowledged || responseRemoveFromOriginal.deletedCount === 0) {
-      throw new Error(responseRemoveFromOriginal.error || 'Failed to remove the note from the original collection.');
+      throw new Error(responseRemoveFromOriginal.error || `Failed to remove the note from the original collection. ${JSON.stringify(responseRemoveFromOriginal)}`);
     }
 
   } catch (error) {
-    res.status(500).json({ error: error.message || 'Sorry, an error occurred while moving the note to trash.' });
+    console.error(error);
+    throw error;
   }
 }
 const deleteAllTrash = async (req, res) => {
