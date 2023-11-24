@@ -14,8 +14,9 @@ const getNotes = async (req, res) => {
 
 const getNote = async (req, res) => {
   const noteid = new ObjectId(req.params.id);
+  const googleId = req.user.googleId;
   const db = await mongodb.getDb();
-  const result = await db.db().collection("notes").find({ _id: noteid });
+  const result = await db.db().collection("notes").find({ _id: noteid, googleId });
   result.toArray().then((lists) => {
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(lists[0]);
