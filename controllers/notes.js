@@ -22,6 +22,11 @@ const getNote = async (req, res) => {
       res.setHeader("Content-Type", "application/json");
       res.status(200).json(lists[0]);
     });
+
+    if (!result) {
+      res.status(404).json({ error: `Note with ID ${noteid} not found` });
+      return;
+    }
   } catch {
     res.status(500).json({ error: "Sorry, an error occurred while moving the note to trash." });
   }
