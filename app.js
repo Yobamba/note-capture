@@ -84,16 +84,10 @@ app.get(
 );
 
 // Add a route for "sign-in" that is not included in Swagger documentation
-const signInRouter = express.Router();
-signInRouter.get("/", (req, res) => {
+app.get("/sign-in", (req, res) => {
   // Handle sign-in logic here
   res.send("Sign-in success!"); // Example response
 });
-
-app.use(
-  "/sign-in", // Mount the sign-in router under "/sign-in"
-  signInRouter
-);
 
 app
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
