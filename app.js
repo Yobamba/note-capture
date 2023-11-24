@@ -17,6 +17,7 @@ const User = require("./user.js");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const app = express();
 const app2 = require("./test.js"); // using this to find a way to ommit the sign-in from swagger ui
+const path = require("path");
 
 app.use(
   session({
