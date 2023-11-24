@@ -16,8 +16,9 @@ const getTrashById = async (req, res) => {
   }
 };
 const getAllTrash = async (req, res) => {
+  const googleId = req.user.googleId;
   const db = await mongodb.getDb();
-  const result = await db.db().collection("trash").find();
+  const result = await db.db().collection("trash").find({ googleId });
 
   result.toArray().then((trashedNotes) => {
     res.status(200).json(trashedNotes);
