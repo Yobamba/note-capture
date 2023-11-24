@@ -83,10 +83,22 @@ app.get(
   }
 );
 
+// Add a route for "sign-in" that is not included in Swagger documentation
+const signInRouter = express.Router();
+signInRouter.get("/", (req, res) => {
+  // Handle sign-in logic here
+  res.send("Sign-in success!"); // Example response
+});
+
+app.use(
+  "/sign-in", // Mount the sign-in router under "/sign-in"
+  signInRouter
+);
+
 app
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
     //hide the internal api endpoints
-    customCss: 'div[id^="operations-hidden"]{display:none} #operations-tag-hidden{display:none}'
+    // customCss: 'div[id^="operations-hidden"]{display:none} #operations-tag-hidden{display:none}'
     })).use(bodyParser.json())
   .use(cors({ origin: "*" }))
   .use((req, res, next) => {
