@@ -108,16 +108,15 @@ const deleteNote = async (req, res) => {
   const db = await mongodb.getDb();
 
   try {
-    const originalNote = await db.db("note_capture").collection("notes").find({ _id: noteId });
+    const originalNote = await db.db("note_capture").collection("notes").findOne({ _id: noteId });
 
     if (!originalNote) {
       res.status(404).json({ error: `Note with ID ${noteId} not found` });
       return;
     }
 
-    await addToTrash(req, res, originalNote); 
-
-    res.status(200).json({ message: `Note ${noteId} moved to trash` });
+   await addToTrash(req, res, originalNote); 
+   res.status(200).json({ message: `Note ${noteId} moved to trash` });
   } catch (error) {
     res.status(500).json({ error: "Sorry, an error occurred while moving the note to trash." });
   }
