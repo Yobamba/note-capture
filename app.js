@@ -84,7 +84,7 @@ app.get(
   }
 );
 
-// Add a route for "sign-in" that is not included in Swagger documentation
+// Adding a route for "sign-in" that is not included in Swagger documentation
 app.get("/sign-in", (req, res) => {
   // Handle sign-in logic here
   res.sendFile("sign-in.html", { root: path.join(__dirname, "./public") });
