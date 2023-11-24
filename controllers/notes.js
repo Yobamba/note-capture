@@ -96,22 +96,6 @@ const updateNote = async (req, res) => {
   }
 };
 
-//const deleteNote = async (req, res) => {
- // const noteId = new ObjectId(req.params.id);
-  //const response = await db
-    //.db()
-    //.collection("notes")
-    //.deleteOne({ _id: noteId }, true);
-  //console.log(response);
-  //if (response.deletedCount > 0) {
-    //res.status(200).send();
- // } else {
-   // res
-     // .status(500)
-      //.json(response.error || "Sorry, an error occured while deleting note.");
- // }
-//};
-
 const deleteNote = async (req, res) => {
   const noteId = new ObjectId(req.params.id);
   const db = await mongodb.getDb();
@@ -161,10 +145,14 @@ const addTagToNote = async (req, res) => {
     res.status(404).json({ error: `Note with ID ${noteId} not found` });
     return;
   }
+
+  await createTagIfNotExists(db, newTag);
+
   const updatedNoteTags = Array.isArray(existingNote.noteTags)
     ? existingNote.noteTags
     : [existingNote.noteTags];
   updatedNoteTags.push(newTag);
+
   const response = await db
     .db()
     .collection("notes")
@@ -180,8 +168,6 @@ const addTagToNote = async (req, res) => {
       .json(response.error || "Sorry, an error occurred while adding the tag.");
   }
 };
-
-
 const createUser = async (req, res) => {
   const user = {
     email: req.body.email,
