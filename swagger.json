@@ -5,10 +5,10 @@
     "description": "Manages users notes",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "note-capture.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/notes/": {
@@ -99,6 +99,12 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -185,38 +191,10 @@
         }
       }
     },
-    "/tags/note/{noteTag}": {
-      "get": {
-        "tags": [
-          "Tags"
-        ],
-        "summary": "Find notes by tag",
-        "description": "Endpoint to find notes by tag",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "noteTag",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/tags/note/{noteId}/addTag": {
+    "/notes/note/{noteId}/addTag": {
       "put": {
         "tags": [
-          "Tags"
+          "Notes"
         ],
         "summary": "Add a tag to the specified note",
         "description": "Endpoint to add a tag to the specified note",
@@ -250,8 +228,39 @@
           "401": {
             "description": "Unauthorized"
           },
+          "404": {
+            "description": "Not Found"
+          },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/tags/note/{noteTag}": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "summary": "Find notes by tag",
+        "description": "Endpoint to find notes by tag",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "noteTag",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -471,17 +480,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
           "401": {
             "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
@@ -530,58 +530,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/start_page/sign-in": {
-      "get": {
-        "tags": [
-          "Sign In"
-        ],
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/start_page/register": {
-      "post": {
-        "tags": [
-          "Sign In"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "userName": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "412": {
-            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
