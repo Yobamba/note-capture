@@ -85,15 +85,16 @@ describe("Testing the tags endpoints", function() {
     
     describe("Get all tags from the collection", function() {
         it("should return a 200", async () => {
-            request(server)
-            .get('/tags')
-            // .expect('Content-Type', /json/)
-            // .expect('Content-Length', '15')
-            .expect(200)
-            .end(function(err, res) {
-                if (err) throw err;
-            });
-        });   
+            try {
+                await request(server)
+                    .get('/tags')
+                    .expect(200);
+            } catch (error) {
+                // Handle the error or log it
+                console.error(error);
+                throw error;
+            }
+        });
     }); 
 
     describe("Get all notes that have the specified tag", function() {
