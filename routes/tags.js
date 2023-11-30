@@ -29,7 +29,7 @@ router.get(
 );
 
 //
-router.get("/", tagsController.getTags, () => {
+router.get("/", ensureAuthenticated, tagsController.getTags, () => {
   /**
    * #swagger.tags = ["Tags"]
    * #swagger.summary = "Find all of the tags created"
@@ -37,7 +37,7 @@ router.get("/", tagsController.getTags, () => {
    */
 });
 
-router.get("/:tagName/notes", tagsController.getTag, () => {
+router.get("/:tagName/notes", ensureAuthenticated,  tagsController.getTag, () => {
   /**
    * #swagger.tags = ["Tags"]
    * #swagger.summary = "Find notes by tag"
@@ -46,21 +46,21 @@ router.get("/:tagName/notes", tagsController.getTag, () => {
    */
 });
 
-router.post("/", tagsController.createTag, () => {
+router.post("/", ensureAuthenticated,  tagsController.createTag, () => {
   /**
    * #swagger.tags = ["Tags"]
    * #swagger.summary = "Create a tag"
    */
 });
 
-router.put("/:tagId", tagsController.updateTag, () => {
+router.put("/:tagId", ensureAuthenticated,  tagsController.updateTag, () => {
   /**
    * #swagger.tags = ["Tags"]
    * #swagger.summary = "Modify the specified tag"
    */
 });
 
-router.delete("/:tagId", tagsController.deleteTag, () => {
+router.delete("/:tagId", ensureAuthenticated,  tagsController.deleteTag, () => {
   /**
    * #swagger.tags = ["Tags"]
    * #swagger.summary = "Delete the specified tag"
