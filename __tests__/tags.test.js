@@ -47,7 +47,7 @@ describe("Testing the tags endpoints", function() {
             if (insertedTagId) {
                 const tags = db.collection("tags");
                 await tags.deleteOne({ _id: insertedTagId });
-                console.log(`Deleted test tag with ID: ${insertedTagId}`);
+                // console.log(`Deleted test tag with ID: ${insertedTagId}`);  // to check the id of the tag we're deleting
             }
         });
     });
