@@ -16,7 +16,7 @@ const findOrCreate = require("mongoose-findorcreate");
 const User = require("./user.js");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const app = express();
-const app2 = require("./test.js"); // using this to find a way to ommit the sign-in from swagger ui
+
 const path = require("path");
 
 app.use(
@@ -115,3 +115,5 @@ mongodb.initDb((err, mongodb) => {
 app.listen(3000, () => {
   console.log("listening on port 3000 for api documentation");
 });
+
+module.exports = app;

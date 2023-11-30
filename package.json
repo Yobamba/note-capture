@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles --coverage --forceExit",
     "start": "nodemon app.js",
     "swagger-autogen": "node ./swagger.js"
   },
@@ -31,7 +31,10 @@
     "node": "18.16.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.2.0",
+    "assert": "^2.1.0",
     "jest": "^29.7.0",
+    "supertest": "^6.3.3",
     "swagger-autogen": "^2.23.7"
   }
 }
