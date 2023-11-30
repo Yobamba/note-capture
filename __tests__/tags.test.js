@@ -1,10 +1,42 @@
 const mongodb = require("../db/connect");
 const app = require("../app");
+const passport = require("passport");
+const express = require("express");
+
 const ObjectId = require("mongodb").ObjectId;
 const dotenv = require("dotenv");
 dotenv.config();
 const MongoClient = require("mongodb").MongoClient;
 const request = require("supertest");
+
+// Mock the user object for authentication
+jest.mock("../user.js", () => ({
+    findOrCreate: jest.fn(),
+  }));
+  
+  // Mock the Google authentication strategy
+  jest.mock("passport-google-oauth20", () => {
+    const { Strategy } = jest.requireActual("passport-google-oauth20");
+  
+    return {
+      Strategy: jest.fn(() => ({
+        authenticate: jest.fn(),
+      })),
+    };
+  });
+  
+
+  
+  // Your passport configuration and route setup
+  
+  // Mock passport's authenticate method
+  jest.spyOn(passport, 'authenticate').mockImplementation((strategy, options, callback) => {
+    return (req, res, next) => {
+      req.user = { /* Mocked user object */ };
+      return callback(null, req.user);
+    };
+  });
+  
 
 describe("Testing the tags endpoints", function() {
     describe("Insert a mock tag to the collection", function () {
