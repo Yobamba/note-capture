@@ -5,10 +5,10 @@
     "description": "Manages users notes",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "note-capture.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/notes/": {
@@ -258,9 +258,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }

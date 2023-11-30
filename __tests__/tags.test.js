@@ -84,11 +84,22 @@ describe("Testing the tags endpoints", function() {
     });
     
     describe("Get all tags from the collection", function() {
-        it("should return a 200", async () => {
+        beforeAll((done) => {
+            mongodb.initDb((err, db) => {
+              if (err) {
+                console.error(err);
+                done();
+              } else {
+                done();
+              }
+            });
+          });
+          
+          it("should return a 200", async () => {
             try {
-                await request(server)
-                    .get('/tags')
-                    .expect(200);
+                const response = await request(server).get('/tags');
+                // console.log(response.body); // Log the response body to see what the test is getting
+                expect(response.status).toBe(200);
             } catch (error) {
                 // Handle the error or log it
                 console.error(error);
@@ -99,17 +110,24 @@ describe("Testing the tags endpoints", function() {
 
     describe("Get all notes that have the specified tag", function() {
         it("should return a 200", async () => {
-            request(server)
-            .get('/tags/note/brandNew')
-            // .get('api-docs/#/Tags/get_tags_note__noteTag_')
-            // .get('api-docs/#/Tags/get_tags_note/brandNew')
-            // .expect('Content-Type', /json/)
-            // .expect('Content-Length', '15')
-            .expect(200)
-            .end(function(err, res) {
-                if (err) throw err;
-            });
-        });   
+            try {
+                const response = await request(server).get('/tags/note/brandNew');
+                // console.log(response.body); // Log the response body to see what the test is getting
+                expect(response.status).toBe(200);
+            } catch (error) {
+                // Handle the error or log it
+                console.error(error);
+                throw error;
+            }
+        }, 10000);  
+        
+        afterAll(async () => {
+            try {
+              await mongodb.getDb().close();
+            } catch (err) {
+              console.error(err);
+            }
+          });
     }); 
 
 });

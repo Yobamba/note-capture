@@ -129,12 +129,17 @@ const deleteNote = async (req, res) => {
 const findByTag = async (req, res) => {
   const noteTag = req.params.noteTag;
   const db = await mongodb.getDb();
-  const result = await db.db().collection("notes").find({ noteTags: noteTag });
 
-  result.toArray().then((lists) => {
+  try {
+    const result = await db.db().collection("notes").find({ noteTags: noteTag }).toArray();
+    console.log(result.body);
+
     res.setHeader("Content-Type", "application/json");
-    res.status(200).json(lists);
-  });
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while fetching notes by tag." });
+  }
 };
 
 const addTagToNote = async (req, res) => {

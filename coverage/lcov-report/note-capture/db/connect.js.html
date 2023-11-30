@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/16</span>
+                <span class='fraction'>12/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">37.5% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/16</span>
+                <span class='fraction'>12/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -105,14 +105,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -120,10 +120,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -138,26 +138,26 @@ const MongoClient = require("mongodb").MongoClient;
 &nbsp;
 let _db;
 &nbsp;
-const initDb = <span class="fstat-no" title="function not covered" >(c</span>allback) =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (_db) {</span>
+const initDb = (callback) =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (_db) {
 <span class="cstat-no" title="statement not covered" >    console.log("Db is already initialized!");</span>
 <span class="cstat-no" title="statement not covered" >    return callback(null, _db);</span>
   }
-<span class="cstat-no" title="statement not covered" >  MongoClient.connect(process.env.MONGODB_URI)</span>
-    .then(<span class="fstat-no" title="function not covered" >(c</span>lient) =&gt; {
-<span class="cstat-no" title="statement not covered" >      _db = client;</span>
-<span class="cstat-no" title="statement not covered" >      callback(null, _db);</span>
+  MongoClient.connect(process.env.MONGODB_URI)
+    .then((client) =&gt; {
+      _db = client;
+      callback(null, _db);
     })
     .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; {
 <span class="cstat-no" title="statement not covered" >      callback(err);</span>
     });
 };
 &nbsp;
-const getDb = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >  if (!_db) {</span>
+const getDb = () =&gt; {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!_db) {
 <span class="cstat-no" title="statement not covered" >    throw Error("Db not initialized");</span>
   }
-<span class="cstat-no" title="statement not covered" >  return _db;</span>
+  return _db;
 };
 &nbsp;
 module.exports = {
@@ -172,7 +172,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-11-30T17:21:16.083Z
+                at 2023-11-30T22:35:44.157Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
