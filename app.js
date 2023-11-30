@@ -113,8 +113,8 @@ mongodb.initDb((err, mongodb) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log("listening on port 3000 for api documentation");
-});
+// app.listen(3000, () => {
+//   console.log("listening on port 3000 for api documentation");
+// });
 
 module.exports = app;

@@ -1,5 +1,5 @@
 const mongodb = require("../db/connect");
-const app = require("../app");
+const server = require("../server.js");
 const passport = require("passport");
 const express = require("express");
 
@@ -51,6 +51,7 @@ describe("Testing the tags endpoints", function() {
     
         afterAll(async () => {
             await connection.close();
+            await server.close();
         });
     
         it("responds to a POST on /", async () => {
@@ -84,8 +85,8 @@ describe("Testing the tags endpoints", function() {
     
     describe("Get all tags from the collection", function() {
         it("should return a 200", async () => {
-            request(app)
-            .get('/api-docs/#/Tags/get_tags_')
+            request(server)
+            .get('/tags')
             // .expect('Content-Type', /json/)
             // .expect('Content-Length', '15')
             .expect(200)
@@ -97,7 +98,7 @@ describe("Testing the tags endpoints", function() {
 
     describe("Get all notes that have the specified tag", function() {
         it("should return a 200", async () => {
-            request(app)
+            request(server)
             .get('/tags/note/brandNew')
             // .get('api-docs/#/Tags/get_tags_note__noteTag_')
             // .get('api-docs/#/Tags/get_tags_note/brandNew')
