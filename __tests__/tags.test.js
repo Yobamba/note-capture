@@ -88,16 +88,56 @@ describe("Testing the tags endpoints", function() {
                 console.error(error);
                 throw error;
             }
-        });  
+        }); 
+
         
-        afterAll(async () => {
-            try {
-              await mongodb.getDb().close();
-            } catch (err) {
-              console.error(err);
-            }
-          });
+        // afterAll(async () => {
+        //     try {
+        //       await mongodb.getDb().close();
+        //     } catch (err) {
+        //       console.error(err);
+        //     }
+        //   });
     }); 
 
+    describe("Modify the tag with the specified tag id", function () {
+
+        const newTag = {
+            name: "randomTest02"
+          };
+
+          // Get the current date and time
+        const currentDate = new Date();
+
+        // Create a formatted date string (YYYY-MM-DD)
+        const formattedDate = currentDate.toISOString().split('T')[0];
+
+        // Create a formatted time string (HH:mm:ss)
+        const formattedTime = currentDate.toLocaleTimeString([], { hour12: false });
+
+        // Combine date and time
+        const dateTimeString = `${formattedDate} ${formattedTime}`;
+
+        // Output the result
+        console.log(dateTimeString);
+
+        it("should return a 204", async () => {
+            try {
+                const response = await request(server)
+                    .put('/tags/65600542ae5db89d76c52296')
+                    .send(newTag); // Send the payload here
+    
+                expect(response.status).toBe(204);
+            } catch (error) {
+                console.error(error);
+                throw error;
+            }
+        });
+    });
+    
+
+    
+
 });
+
 

@@ -39,6 +39,7 @@ const createTag = async (req, res) => {
 };
 
 const updateTag = async (req, res) => {
+  console.log(req.body) // debugging the request sent in
   const tagId = new ObjectId(req.params.tagId);
   const db = await mongodb.getDb();
   const tag = {

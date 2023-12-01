@@ -132,7 +132,7 @@ const findByTag = async (req, res) => {
 
   try {
     const result = await db.db().collection("notes").find({ noteTags: noteTag }).toArray();
-    console.log(result.body);
+   
 
     res.setHeader("Content-Type", "application/json");
     res.status(200).json(result);
