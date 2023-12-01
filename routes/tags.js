@@ -39,14 +39,15 @@ router.get("/", ensureAuthenticated, tagsController.getTags, () => {
    */
 });
 
-router.get("/:tagName/notes", ensureAuthenticated,  tagsController.getTag, () => {
-  /**
-   * #swagger.tags = ["Tags"]
-   * #swagger.summary = "Find notes by tag"
-   * #swagger.description = "Returns all of the notes with the specified tag"
-   *
-   */
-});
+// router.get("/:tagName/notes", ensureAuthenticated,  tagsController.getTag, () => { // This one is redundant
+
+//   /**
+//    * #swagger.tags = ["Tags"]
+//    * #swagger.summary = "Find notes by tag"
+//    * #swagger.description = "Returns all of the notes with the specified tag"
+//    *
+//    */
+// });
 
 router.post("/", ensureAuthenticated,  tagsController.createTag, () => {
   /**
