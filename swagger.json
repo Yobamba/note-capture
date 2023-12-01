@@ -258,6 +258,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -304,28 +307,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/tags/{tagName}/notes": {
-      "get": {
-        "tags": [
-          "Tags"
-        ],
-        "summary": "Find notes by tag",
-        "description": "Returns all of the notes with the specified tag",
-        "parameters": [
-          {
-            "name": "tagName",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
