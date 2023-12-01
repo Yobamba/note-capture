@@ -10,8 +10,8 @@ const app2 = express();
 
 // Mock authenticated user for testing
 const authenticatedUser = {
-  googleId: '114026477672450796016',
-  // Other relevant user data
+  googleId: 'x',
+  
 };
 
 // Mock passport.authenticate middleware
@@ -19,11 +19,6 @@ const authenticateMock = (req, res, next) => {
   req.user = authenticatedUser;
   next();
 };
-
-
-
-
-
 
 describe("Testing the notes endpoints", function () {
   let connection;
@@ -78,31 +73,27 @@ describe("Testing the notes endpoints", function () {
   });
 
   describe('Testing the notes endpoints', () => {
-    // Apply the middleware to your route
+    // Applying middleware to the route
     app2.get('/notes', authenticateMock, (req, res) => {
-      // Your route logic here, which can now access req.user
       res.status(200).json({ message: 'Mocked response' });
     });
     it('should return a 200', async () => {
         const response = await request(app2)
             .get('/notes')
             .expect(200);
-        // console.log('troubleshooting the GET', response.body);
         expect(response.status).toBe(200);
     });
   });
 
   describe("Get a specific note from the collection", function () {
     // Apply the middleware to the other route
-    app2.get('/notes/6569dc75789506885c087ec6', authenticateMock, (req, res) => {
-      // Your route logic here, which can now access req.user
+    app2.get('/notes/6569dc75789506885c087ec', authenticateMock, (req, res) => {
       res.status(200).json({ message: 'Mocked response' });
     });
 
     it("should return a 200", async () => {
       try {
-        const response = await request(app2).get('/notes/6569dc75789506885c087ec6');
-        console.log(response.body);
+        const response = await request(app2).get('/notes/6569dc75789506885c087ec');
         expect(response.status).toBe(200);
       } catch (error) {
         console.error(error);

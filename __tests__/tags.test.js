@@ -6,7 +6,6 @@ dotenv.config();
 const MongoClient = require("mongodb").MongoClient;
 const request = require("supertest");
 
-
 describe("Testing the tags endpoints", function() {
     describe("Insert a mock tag to the collection", function () {
         let connection;
@@ -89,7 +88,6 @@ describe("Testing the tags endpoints", function() {
                 throw error;
             }
         }); 
-
         
         // afterAll(async () => {
         //     try {
@@ -101,10 +99,7 @@ describe("Testing the tags endpoints", function() {
     }); 
 
     describe("Modify the tag with the specified tag id", function () {
-
-        
-
-          // Get the current date and time
+        // Get the current date and time
         const currentDate = new Date();
 
         // Create a formatted date string (YYYY-MM-DD)
@@ -115,9 +110,6 @@ describe("Testing the tags endpoints", function() {
 
         // Combine date and time
         const dateTimeString = `${formattedDate} ${formattedTime}`;
-
-        // Output the result
-        console.log(dateTimeString);
 
         const newTag = {
             name: "randomTest02" + "last modified on " + dateTimeString
@@ -136,10 +128,6 @@ describe("Testing the tags endpoints", function() {
             }
         });
     });
-    
-
-    
-
 });
 
 
