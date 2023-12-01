@@ -102,9 +102,7 @@ describe("Testing the tags endpoints", function() {
 
     describe("Modify the tag with the specified tag id", function () {
 
-        const newTag = {
-            name: "randomTest02"
-          };
+        
 
           // Get the current date and time
         const currentDate = new Date();
@@ -120,6 +118,10 @@ describe("Testing the tags endpoints", function() {
 
         // Output the result
         console.log(dateTimeString);
+
+        const newTag = {
+            name: "randomTest02" + "last modified on " + dateTimeString
+          };
 
         it("should return a 204", async () => {
             try {
