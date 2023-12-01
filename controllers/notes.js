@@ -2,6 +2,7 @@ const mongodb = require("../db/connect");
 const ObjectId = require("mongodb").ObjectId;
 const tagsController = require("../controllers/tags");
 const addToTrash = require('./trash').addToTrash;
+
 const getNotes = async (req, res) => {
   const googleId = req.user.googleId;
   const db = await mongodb.getDb();

@@ -61,7 +61,8 @@ describe("Testing the notes endpoints", function () {
   describe("Get all notes from the collection", function () {
     it("should return a 200", async () => {
       try {
-        const response = await request(server).get("/notes");
+        const response = await request(server).get('/notes');
+        console.log("troubleshooting the GET " + response.body);
         expect(response.status).toBe(200);
       } catch (error) {
         console.error(error);
