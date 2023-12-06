@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const notesController = require("../controllers/notes");
+const validator = require('../validation');
+
 
 // Define the ensureAuthenticated middleware
 const ensureAuthenticated = (req, res, next) => {
@@ -32,7 +34,7 @@ router.get("/:id", ensureAuthenticated, notesController.getNote, () => {
    */
 });
 
-router.post("/", ensureAuthenticated, notesController.createNote, () => {
+router.post("/", ensureAuthenticated, validator.validateNote, notesController.createNote, () => {
   /**
    * #swagger.tags = ["Notes"]
    * #swagger.summary = "Create a note in the database"

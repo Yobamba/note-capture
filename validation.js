@@ -25,9 +25,32 @@ const saveCreatedUser = async (req, res, next) => {
   }).catch((err) => console.log(err));
 };
 
+const noteValidationRules = {
+  title: "required|string|max:255",
+  note: "required|string",
+  noteTags: "required|array",
+  pinStatus: "required|string",
+};
+
+const validateNote = async (req, res, next) => {
+  await validator(req.body, noteValidationRules, {}, (err, status) => {
+    if (!status) {
+      res.status(412).send({
+        success: false,
+        message: "Validation failed",
+        data: err,
+      });
+    } else {
+      next();
+    }
+  }).catch((err) => console.log(err));
+};
+
+
 module.exports = {
   validator,
   saveCreatedUser,
+  validateNote
 };
 
 // module.exports = validator;
