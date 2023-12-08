@@ -28,7 +28,7 @@ const saveCreatedUser = async (req, res, next) => {
 const noteValidationRules = {
   title: "required|string|max:255",
   note: "required|string",
-  noteTags: "required|array",
+  noteTags: "required",
   pinStatus: "required|string",
 };
 
