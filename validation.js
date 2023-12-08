@@ -30,6 +30,7 @@ const noteValidationRules = {
   note: "required|string",
   noteTags: "required",
   pinStatus: "required|string",
+  attatchments: "required|array",
 };
 
 const validateNote = async (req, res, next) => {
