@@ -119,10 +119,8 @@
 
       if (attatchments.includes("https")) {
         const listOfAttatchments = attatchments.split(".");
-      }
-  
-  
-      if (Array.isArray(listOfAttatchments) && listOfAttatchments.length > 0) {
+
+        if (Array.isArray(listOfAttatchments) && listOfAttatchments.length > 0) {
         listOfAttatchments.forEach(imgUrl => {
           let image = document.createElement("img");
           image.setAttribute('src', imgUrl);
@@ -134,6 +132,10 @@
           card.appendChild(image);
         });
       }
+      }
+  
+  
+      
       
   
       card.appendChild(noteTitle);
