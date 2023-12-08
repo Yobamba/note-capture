@@ -93,7 +93,7 @@ app.get("/sign-in", (req, res) => {
 
 // Adding a route for "/" that is not included in Swagger documentation
 app.get("/", (req, res) => {
-  res.sendFile("index.html");
+  res.sendFile("index.html", { root: path.join(__dirname) });
 });
 
 app
