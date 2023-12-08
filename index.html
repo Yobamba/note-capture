@@ -43,7 +43,7 @@
         <header>
             <h1>Notes</h1>
           </header>
-          <p>Sign in <a href="https://note-capture.onrender.com/sign-in" target="_blank">here</a></p>
+          <p class="visible">Sign in <a href="https://note-capture.onrender.com/sign-in" target="_blank">here</a></p>
           <main>
             <div id="cards"></div>
           </main>
@@ -134,6 +134,8 @@
       // card.setAttribute('style', 'background-color:brown');
   
       cards.appendChild(card);
+
+      document.querySelector(".invisible").style.display = "note";
   
   });
   }
