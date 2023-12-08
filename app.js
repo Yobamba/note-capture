@@ -91,6 +91,11 @@ app.get("/sign-in", (req, res) => {
   res.sendFile("sign-in.html", { root: path.join(__dirname, "./public") });
 });
 
+// Adding a route for "/" that is not included in Swagger documentation
+app.get("/", (req, res) => {
+  res.sendFile("index.html");
+});
+
 app
   .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
     //hide the internal api endpoints
