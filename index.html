@@ -118,7 +118,18 @@
       noteP.textContent = noteTxt;
   
   
-  
+      if (attatchments && attatchments.length > 0) {
+        attatchments.forEach(imgUrl => {
+          let image = document.createElement("img");
+          image.setAttribute('src', imgUrl);
+          image.setAttribute('alt', 'Attachment');
+          image.setAttribute('loading', 'lazy');
+          image.setAttribute('width', '100'); // Set your preferred width
+          image.setAttribute('height', '100'); // Set your preferred height
+
+          card.appendChild(image);
+        });
+      }
   
       // portrait.setAttribute('src', prophet.imageurl);
       // portrait.setAttribute('alt', `Portrait of ${firstAndLastName}`);
@@ -135,7 +146,7 @@
   
       cards.appendChild(card);
 
-      document.querySelector(".invisible").style.display = "note";
+      document.querySelector(".invisible").style.display = "none";
   
   });
   }
