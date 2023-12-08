@@ -80,7 +80,7 @@ app.get(
     failureRedirect: "https://note-capture.onrender.com/start_page/sign-in",
   }),
   function (req, res) {
-    res.redirect("https://note-capture.onrender.com/api-docs");
+    res.redirect("https://note-capture.onrender.com/");
     console.log("in the auth doc");
   }
 );
