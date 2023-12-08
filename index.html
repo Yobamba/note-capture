@@ -44,6 +44,32 @@
         
         <!-- <script src="scripts/notes.js" async defer></script> -->
         <script>
+
+        const ensureAuthenticated = (req, res, next) => {
+          if (req.isAuthenticated()) {
+            console.log("you're authenticated now!");
+            return next(); // User is authenticated, proceed to the next middleware
+          }
+
+          res.status(401).json({
+            message:
+              "Authentication required. Copy and paste 'https://note-capture.onrender.com/sign-in' into the browser and sign in. ",
+          });
+        };
+
+        // const isAuthenticated = () => {
+        //     // Check if the user is authenticated based on your server-side logic
+        //     // For simplicity, this example assumes that you have a session variable named 'user'
+        //     // Modify this function according to your actual authentication logic
+        //     return sessionStorage.getItem('user') !== null;
+        // };
+
+
+
+
+
+
+
           const url = 'https://note-capture.onrender.com/notes/';
   
   const cards = document.querySelector("#cards");
