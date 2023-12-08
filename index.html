@@ -22,6 +22,15 @@
         main {
           background-color:darkslategrey;
         }
+
+        .card {
+        box-shadow: 5px 5px 15px;
+        border-radius: 35px 20px 20px 10px;
+        text-align: left;
+        margin:10px;
+        background-color: lightgrey;
+        }
+        
       </style>
         <header>
             <h1>Notes</h1>
@@ -62,6 +71,7 @@
       let noteTitle = document.createElement("h2");
       let noteP = document.createElement("p");
       let card = document.createElement("section");
+      card.classList.add(card);
       // let portrait = document.createElement("img");
   
   
