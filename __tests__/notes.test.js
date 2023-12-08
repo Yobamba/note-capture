@@ -101,4 +101,20 @@ describe("Testing the notes endpoints", function () {
       }
     });
   });
+  describe("Delete a specific note from the collection", function () {
+    app2.delete('/notes/6569dc75789506885c087ec', authenticateMock, (req, res) => {
+      res.status(200).json({ message: 'Mocked response' });
+    });
+  
+    it("should return a 200", async () => {
+      try {
+        const response = await request(app2).delete(`/notes/6569dc75789506885c087ec`);
+        expect(response.status).toBe(200);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    });
+  });
+  
 });
