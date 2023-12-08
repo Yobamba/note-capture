@@ -45,19 +45,19 @@
         <!-- <script src="scripts/notes.js" async defer></script> -->
         <script>
 
-        const ensureAuthenticated = (req, res, next) => {
-          if (req.isAuthenticated()) {
-            console.log("you're authenticated now!");
-            return next(); // User is authenticated, proceed to the next middleware
-          }
+        // const ensureAuthenticated = (req, res, next) => {
+        //   if (req.isAuthenticated()) {
+        //     console.log("you're authenticated now!");
+        //     return next(); // User is authenticated, proceed to the next middleware
+        //   }
 
-          res.status(401).json({
-            message:
-              "Authentication required. Copy and paste 'https://note-capture.onrender.com/sign-in' into the browser and sign in. ",
-          });
-        };
+        //   res.status(401).json({
+        //     message:
+        //       "Authentication required. Copy and paste 'https://note-capture.onrender.com/sign-in' into the browser and sign in. ",
+        //   });
+        // };
 
-        ensureAuthenticated();
+        // ensureAuthenticated();
 
         // const isAuthenticated = () => {
         //     // Check if the user is authenticated based on your server-side logic
