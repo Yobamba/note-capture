@@ -116,6 +116,10 @@
       //Populate elements
       noteTitle.textContent = title;
       noteP.textContent = noteTxt;
+
+      if (attatchments.includes("https")) {
+        const listOfAttatchments = attatchments.split(" ");
+      }
   
   
       if (Array.isArray(attatchments) && attatchments.length > 0) {

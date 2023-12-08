@@ -27,9 +27,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -59,7 +56,7 @@
                   "example": "any"
                 },
                 "attatchments": {
-                  "example": ["any"]
+                  "example": "any"
                 }
               }
             }
@@ -71,9 +68,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "412": {
-            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"
@@ -149,7 +143,7 @@
                   "example": "any"
                 },
                 "attatchments": {
-                  "example": ["any"]
+                  "example": "any"
                 }
               }
             }
@@ -284,9 +278,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -404,9 +395,6 @@
           },
           "404": {
             "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -450,9 +438,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
