@@ -118,7 +118,7 @@
       noteP.textContent = noteTxt;
   
   
-      if (attatchments && attatchments.length > 0) {
+      if (Array.isArray(attatchments) && attatchments.length > 0) {
         attatchments.forEach(imgUrl => {
           let image = document.createElement("img");
           image.setAttribute('src', imgUrl);
