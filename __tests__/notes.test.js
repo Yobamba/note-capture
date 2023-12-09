@@ -62,14 +62,6 @@ describe("Testing the notes endpoints", function () {
         throw error;
       }
     });
-
-    afterEach(async () => {
-      // Clean up: delete the inserted note after each test
-      if (insertedNoteId) {
-        const notes = db.collection("notes");
-        await notes.deleteOne({ _id: insertedNoteId });
-      }
-    });
   });
 
   describe('Testing the notes endpoints', () => {
@@ -95,6 +87,21 @@ describe("Testing the notes endpoints", function () {
       try {
         const response = await request(app2).get('/notes/6569dc75789506885c087ec');
         expect(response.status).toBe(200);
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    });
+  });
+  describe("Update a specific note in the collection", function () {
+    app2.put('/notes/6569dc75789506885c087ec', authenticateMock, (req, res) => {
+      res.status(204).send();
+    });
+  
+    it("should return a 204", async () => {
+      try {
+        const response = await request(app2).put(`/notes/6569dc75789506885c087ec`);
+        expect(response.status).toBe(204);
       } catch (error) {
         console.error(error);
         throw error;
