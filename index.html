@@ -117,13 +117,18 @@
       noteTitle.textContent = title;
       noteP.textContent = noteTxt;
 
-      if (attatchments.includes("https")) {
-        const listOfAttatchments = attatchments.split(";");
+      function stringToArrayFrom(inputString) {
+        return Array.from(inputString);
+      }
 
-        if (Array.isArray(listOfAttatchments) && listOfAttatchments.length > 0) {
-        listOfAttatchments.forEach(imgUrl => {
+      if (attatchments.includes("png")) {
+        const resultArray = stringToArrayFrom(attatchments);
+       
+
+        if (resultArray && resultArray.length > 0) {
+        resultArray.forEach(imgUrl => {
           let image = document.createElement("img");
-          image.setAttribute('src', imgUrl);
+          image.setAttribute('src', 'images/' + imgUrl);
           image.setAttribute('alt', 'Attachment');
           image.setAttribute('loading', 'lazy');
           image.setAttribute('width', '100'); // Set your preferred width
