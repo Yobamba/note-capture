@@ -14,7 +14,7 @@ const ensureAuthenticated = (req, res, next) => {
 
   res.status(401).json({
     message:
-      "Authentication required. Copy and paste 'https://note-capture.onrender.com/sign-in' into the browser and sign in. ",
+      "Authentication required. Copy and paste https://note-capture.onrender.com/sign-in into the browser and sign in. ",
   });
 };
 
