@@ -8,6 +8,7 @@ const request = require("supertest");
 
 describe("Testing the tags endpoints", function() {
     let insertedTagId; // Store the ID of the inserted tag
+    let createdTagId;
     describe("Insert a mock tag to the collection", function () {
         let connection;
         let db;
@@ -43,9 +44,20 @@ describe("Testing the tags endpoints", function() {
     });
 
     describe("POST a new tag", function() {
+        beforeAll((done) => {
+            mongodb.initDb((err, db) => {
+              if (err) {
+                console.error(err);
+                done();
+              } else {
+                done();
+              }
+            });
+          });
         it("should return a 201", async () => { 
             const newObjectId = new ObjectId();
             const theTagName = "Jest Test Tag";
+            createdTagId = newObjectId;
     
             // the tag that will be inserted for the test
             const mockTag = {
