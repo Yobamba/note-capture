@@ -117,12 +117,9 @@
       noteTitle.textContent = title;
       noteP.textContent = noteTxt;
 
-      function stringToArrayFrom(inputString) {
-        return Array.from(inputString);
-      }
 
       if (attatchments.includes("png")) {
-        const resultArray = stringToArrayFrom(attatchments);
+        const resultArray = [attatchments];
         console.log(resultArray);
        
 
