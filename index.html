@@ -39,6 +39,10 @@
         h2 {
           border-bottom: 1px solid black;
         }
+
+        .pic {
+          padding-top: 15px;
+        }
         
       </style>
         <header>
@@ -131,6 +135,7 @@
           image.setAttribute('loading', 'lazy');
           image.setAttribute('width', '190'); // Set your preferred width
           image.setAttribute('height', '170'); // Set your preferred height
+          image.setAttribute('class', 'pic')
 
           card.appendChild(image);
         });
