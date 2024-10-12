@@ -69,6 +69,30 @@ passport.use(
   )
 );
 
+// Instagram webhook route
+app.get('/webhook', (req, res) => {
+  // Instagram verification request
+  const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
+  const verifyToken = req.query['hub.verify_token'];
+  const challenge = req.query['hub.challenge'];
+
+  if (verifyToken === VERIFY_TOKEN) {
+      res.status(200).send(challenge);
+  } else {
+      res.status(403).send('Error, invalid token');
+  }
+});
+
+app.post('/webhook', (req, res) => {
+  // Handle incoming webhook data
+  const data = req.body;
+  console.log(`Received webhook event: ${JSON.stringify(data)}`);
+
+  // Process the event (e.g., store in database, trigger an action)
+  res.status(200).json({status: 'received'});
+});
+
+
 app.get("/auth/google", (req, res) => {
   console.log("in the auth code");
   passport.authenticate("google", { scope: ["profile"] })(req, res);
